@@ -8,38 +8,34 @@ tags:
   - Web
 ---
 
-# 用 GitHub Pages + Huxpro 模板搭建个人博客的踩坑与复盘
+## 用 GitHub Pages + Huxpro 模板搭建个人博客的踩坑与复盘
 
 作为一个经常折腾技术的开发者，我一直想拥有一个简洁美观的个人博客。这次终于用 **GitHub Pages + Huxpro 模板** 完成了搭建，但过程中踩了不少 Git 操作和配置的坑。这篇文章记录完整流程，也总结一些容易踩的雷，希望能帮到同样想搭博客的朋友。
 
-## 一、前期准备：理解 GitHub Pages 的核心逻辑
+### 一、前期准备：理解 GitHub Pages 的核心逻辑
 
 在动手前，先明确基础概念：
 
 - **GitHub Pages**：是 GitHub 提供的静态页面托管服务，只需将静态文件（HTML/CSS/JS）推送到指定仓库（`用户名.github.io`），就能自动生成公开访问的博客页面。
 - **Huxpro 模板**：是一个基于 Jekyll 的博客模板（作者是前 Meta React 团队的 Hux 黄玄），自带响应式布局、侧边栏、标签系统等功能，不用从零写前端代码。
 
-## 二、搭建过程：从仓库创建到模板整合
+### 二、搭建过程：从仓库创建到模板整合
 
-### 1. 第一步：创建 GitHub Pages 仓库
+#### 1. 第一步：创建 GitHub Pages 仓库
 
-首先在 GitHub 新建一个仓库，命名为 `用户名.github.io`（比如我的是 `zhuangyiqiao.github.io`），这是 GitHub Pages 的固定仓库名，创建后默认分支为 `main`（注意：2020 年后 GitHub 已将默认分支从 `master` 改为 `main`，后续操作要统一用 `main`）。
+首先在 GitHub 新建一个仓库，命名为 `用户名.github.io`（比如我的github用户名是zhuangyiqiao 所以我的命名的是 `zhuangyiqiao.github.io`），这是 GitHub Pages 的固定仓库名，创建后默认分支为 `main`（注意：2020 年后 GitHub 已将默认分支从 `master` 改为 `main`，后续操作要统一用 `main`）。
 
-### 2. 第二步：克隆仓库到本地（或 Codespaces）
+#### 2. 第二步：克隆仓库到本地（或 Codespaces）
 
 我用的是 GitHub Codespaces（在线开发环境），直接克隆仓库：
-
-bash
-
-运行
-
+bash 运行
 ```
 # 克隆自己的仓库到本地
 git clone https://github.com/zhuangyiqiao/zhuangyiqiao.github.io.git
 cd zhuangyiqiao.github.io
 ```
 
-### 3. 第三步：引入 Huxpro 模板（核心踩坑点）
+#### 3. 第三步：引入 Huxpro 模板（核心踩坑点）
 
 这一步是最容易出错的，我一开始犯了几个典型错误：
 
@@ -49,10 +45,7 @@ cd zhuangyiqiao.github.io
     
     **正确操作**：先把模板克隆到临时目录，再复制核心文件到自己的仓库：
     
-    bash
-    
-    运行
-    
+    bash 运行
     ```
     # 克隆 Huxpro 模板到临时目录
     git clone https://github.com/Huxpro/huxpro.github.io.git /workspaces/hux-temp
@@ -69,23 +62,22 @@ cd zhuangyiqiao.github.io
     
     我错误地添加了多余的远程别名（比如 `mine`），还试图推送到不存在的 `master` 分支，导致报错 `src refspec master does not match any`。
     
-    **正确操作**：只用默认的 `origin` 别名，推送时指定 `main` 分支：
-    
-    bash
-    
-    运行
-    
+    **正确操作**：
+    只用默认的 `origin` 别名，推送时指定 `main` 分支：
+
+    一句话就是直接用git push origin就ok。
+
+    bash 运行
     ```
     # 提交模板文件
     git add .
     git commit -m "引入 Huxpro 博客模板"
     
     # 推送到自己的仓库（默认分支 main）
-    git push origin main
+    git push origin
     ```
     
-
-### 4. 第四步：修改模板配置为个人信息
+#### 4. 第四步：修改模板配置为个人信息
 
 打开模板的 `_config.yml` 文件，替换所有 Huxpro 的信息为自己的：
 
@@ -103,7 +95,7 @@ sidebar-about-description: "热爱技术的开发者 | 专注前端与工程化"
 sidebar-avatar: https://github.com/zhuangyiqiao.png  # 自己的头像 URL
 ```
 
-## 三、踩坑复盘：这些错误一定要避免
+### 三、踩坑复盘：这些错误一定要避免
 
 1. **不要在命令前加 `$`**：`$` 是终端提示符，不是命令的一部分，直接输入 `git clone` 即可。
 2. **分支名要统一用 `main`**：GitHub 新仓库默认分支是 `main`，不要习惯性用 `master`，否则会提示分支不存在。
@@ -111,11 +103,11 @@ sidebar-avatar: https://github.com/zhuangyiqiao.png  # 自己的头像 URL
 4. **必须复制模板的隐藏文件**：模板的 `.gitignore`、`_config.yml` 等隐藏文件是核心，漏掉会导致博客样式失效。
 5. **不要直接克隆模板到自己的仓库根目录**：会生成子文件夹，必须通过临时目录复制文件到根目录。
 
-## 四、最后一步：发布与验证
+### 四、最后一步：发布与验证
 
 推送完成后，等待 1-5 分钟（GitHub Pages 构建需要时间），打开 `https://用户名.github.io`，就能看到完整的博客页面了。如果页面没更新，可以在仓库的 `Settings → Pages` 中手动触发重新构建。
 
-## 写在最后
+### 写在最后
 
 这次搭建博客的过程，本质是对 Git 操作和静态页面托管的一次实践。虽然踩了不少坑，但也理清了 GitHub Pages 的核心逻辑 ——**其实就是 “推送静态文件到指定仓库”**，模板只是帮我们省去了写前端的时间。
 
