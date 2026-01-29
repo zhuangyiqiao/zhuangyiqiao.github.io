@@ -5,8 +5,8 @@ subtitle: 用 GitHub Pages + Huxpro 模板搭建个人博客的踩坑与复盘
 author: "zhuang"
 header-style: text
 tags:
-  - Web
-  
+--- Web
+
 # 我的 GitHub 博客搭建日记（二）：从模板到专属博客，手把手踩坑 & 改造
 
 很多新手（包括我）第一次用别人的博客模板，都会发愁 “怎么把别人的东西换成自己的？” 今天我就把自己改造 Hux 模板的全过程拆成**简单步骤 + 避坑指南**，新手跟着做就能搞定～
