@@ -1,10 +1,10 @@
 # Site settings
-title: Cynthia Blog
-SEOTitle: cynthia成长笔记 | 天气冷冷的，但我的心是暖暖的
+title: Zhuang Blog
+SEOTitle: Zhuang成长笔记 | 天气冷冷的，但我的心是暖暖的
 header-img: img/nikki-bg.jpg
 email: 3506865864@qq.com
 description: "Nikki~ | 天气冷冷的，但我的心是暖暖的"
-keyword: " Web, JavaScript, React, React Native, 前端, 设计"
+keyword: "ML DL DB web"
 url: "https://zhuangyiqiao.github.io" # 请替换为你的GitHub Pages实际地址，如 https://zhuangyiqiao.github.io
 baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
 
@@ -24,7 +24,7 @@ twitter_username: huxpro
 # from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
 highlighter: rouge
 permalink: pretty
-paginate: 10
+paginate: 5      #展示博客数量
 exclude:
   [
     "less",
