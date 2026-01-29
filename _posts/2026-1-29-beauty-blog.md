@@ -4,8 +4,8 @@ title: 如何修改博客模板信息为自己信息？
 subtitle: 用 GitHub Pages + Huxpro 模板搭建个人博客的踩坑与复盘
 author: "zhuang"
 header-style: text
-tags:
---- Web
+tags: web
+--- 
 
 # 我的 GitHub 博客搭建日记（二）：从模板到专属博客，手把手踩坑 & 改造
 
